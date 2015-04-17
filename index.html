@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Sarah E. Clatterbuck - SEC Advertising</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <script type="text/x-handlebars">
+    <h1>Sarah E. Clatterbuck - Engineering and User Experience Leader</h1>
+    <nav>
+      <ul>
+        <li>
+          {{#link-to 'index'}}Home{{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'speaking'}}Speaking{{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'press'}}PR{{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'engineering'}}Engineering Work{{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'design'}}Design Work{{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'adventures'}}Adventures{{/link-to}}
+        </li>
+      </ul>
+    </nav>
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" id="index">
+    <h2>Home</h2>
+  </script>
+
+  <script type="text/x-handlebars" id="speaking">
+    <h2>Speaking</h2>
+    <ul>
+      {{#each model}}
+      <li>
+          <dl>
+            <dt>{{name}}</dt>
+            <dd>{{venue}}</dd>
+            <dd>{{description}}</dd>
+            <dd><a {{bind-attr href=url}} target="_blank">{{url}}</a></dd>
+            <dd><img {{bind-attr src=image}} {{bind-attr alt=name}} width="200"/></dd> 
+          </dl>
+      </li>
+    {{/each}}
+    </ul>
+  </script>
+
+
+  <script type="text/x-handlebars" id="press">
+    <h2>PR</h2>
+    <ul>
+      {{#each model}}
+      <li>
+          <dl>
+            <dt>{{name}}</dt>
+            <dd>{{publication}}</dd>
+            <dd>{{reporter}}</dd>
+            <dd><a {{bind-attr href=url}} target="_blank">{{url}}</a></dd>
+            <dd><img {{bind-attr src=image}} {{bind-attr alt=name}} width="200"/></dd> 
+          </dl>
+      </li>
+    {{/each}}
+    </ul>
+  </script>
+
+  <script type="text/x-handlebars" id="engineering">
+    <h2>Engineering Work</h2>
+  </script>
+
+  <script type="text/x-handlebars" id="design">
+    <h2>Design Work</h2>
+  </script>
+
+  <script type="text/x-handlebars" id="adventures">
+    <h2>Adventures</h2>
+  </script>
+  
+  <!--<script type="text/x-handlebars" id="photos">
+  	<h2>Photos</h2>
+  	<ul>
+	{{#each model}}
+		<li>
+			{{#link-to 'photo' this}}
+				<img {{bind-attr src=url}} {{bind-attr alt=title}} width="150"/>
+			{{/link-to}}
+			<dl>
+				<dt>{{title}}</dt>
+				<dd>{{description}}</dd>
+			</dl>
+		</li>
+	{{/each}}
+  	</ul>
+  </script>-->
+
+ 
+
+  <script src="js/libs/jquery-1.10.2.js"></script>
+  <script src="js/libs/handlebars-1.1.2.js"></script>
+  <script src="js/libs/ember-1.6.1.js"></script>
+  <script src="js/app.js"></script>
+  <!-- to activate the test runner, add the "?test" query string parameter -->
+  <script src="tests/runner.js"></script>
+</body>
+</html>
