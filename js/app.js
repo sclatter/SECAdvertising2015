@@ -7,6 +7,19 @@ SecAds.IndexRoute = Ember.Route.extend({
   }
 });
 
+SecAds.AdventureRoute = Ember.Route.extend({
+  model: function(params) {
+    return [
+      {
+        trip: "",
+        url: "", 
+        description: ""
+      },
+
+    ];
+  }
+});
+
 SecAds.SpeakingRoute = Ember.Route.extend({
   model: function(params) {
     return [
@@ -157,6 +170,7 @@ SecAds.PressRoute = Ember.Route.extend({
 
 SecAds.Router.map(function() {
   this.resource('speaking');
+  this.resource('writing');
   this.resource('press');
   this.resource('engineering');
   this.resource('design');

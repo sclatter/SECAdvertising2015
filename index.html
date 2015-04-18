@@ -8,7 +8,7 @@
 </head>
 <body>
   <script type="text/x-handlebars">
-    <h1>Sarah E. Clatterbuck - Engineering and User Experience Leader</h1>
+    <h1>Sarah E. Clatterbuck</h1>
     <nav>
       <ul>
         <li>
@@ -18,7 +18,10 @@
           {{#link-to 'speaking'}}Speaking{{/link-to}}
         </li>
         <li>
-          {{#link-to 'press'}}PR{{/link-to}}
+          {{#link-to 'writing'}}Writing{{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'press'}}Press{{/link-to}}
         </li>
         <li>
           {{#link-to 'engineering'}}Engineering Work{{/link-to}}
@@ -35,7 +38,7 @@
   </script>
 
   <script type="text/x-handlebars" id="index">
-    <h2>Home</h2>
+    <h2>Engineering and User Experience Leader</h2>
   </script>
 
   <script type="text/x-handlebars" id="speaking">
@@ -44,11 +47,9 @@
       {{#each model}}
       <li>
           <dl>
-            <dt>{{name}}</dt>
+            <dt><a {{bind-attr href=url}} target="_blank">{{name}}</a></dt>
             <dd>{{venue}}</dd>
             <dd>{{description}}</dd>
-            <dd><a {{bind-attr href=url}} target="_blank">{{url}}</a></dd>
-            <dd><img {{bind-attr src=image}} {{bind-attr alt=name}} width="200"/></dd> 
           </dl>
       </li>
     {{/each}}
@@ -57,20 +58,22 @@
 
 
   <script type="text/x-handlebars" id="press">
-    <h2>PR</h2>
+    <h2>Press</h2>
     <ul>
       {{#each model}}
       <li>
           <dl>
-            <dt>{{name}}</dt>
+            <dt><a {{bind-attr href=url}} target="_blank">{{name}}</a></dt>
             <dd>{{publication}}</dd>
             <dd>{{reporter}}</dd>
-            <dd><a {{bind-attr href=url}} target="_blank">{{url}}</a></dd>
-            <dd><img {{bind-attr src=image}} {{bind-attr alt=name}} width="200"/></dd> 
           </dl>
       </li>
     {{/each}}
     </ul>
+  </script>
+
+  <script type="text/x-handlebars" id="writing">
+    <h2>Writing</h2>
   </script>
 
   <script type="text/x-handlebars" id="engineering">
@@ -83,24 +86,18 @@
 
   <script type="text/x-handlebars" id="adventures">
     <h2>Adventures</h2>
+    <ul>
+    {{#each model}}
+      <li>
+          <dl>
+            <dt><a {{bind-attr href=url}} target="_blank">{{trip}}</a></dt>
+            <dd>{{description}}</dd>
+          </dl>
+      </li>
+    {{/each}}
+    </ul>
   </script>
   
-  <!--<script type="text/x-handlebars" id="photos">
-  	<h2>Photos</h2>
-  	<ul>
-	{{#each model}}
-		<li>
-			{{#link-to 'photo' this}}
-				<img {{bind-attr src=url}} {{bind-attr alt=title}} width="150"/>
-			{{/link-to}}
-			<dl>
-				<dt>{{title}}</dt>
-				<dd>{{description}}</dd>
-			</dl>
-		</li>
-	{{/each}}
-  	</ul>
-  </script>-->
 
  
 
