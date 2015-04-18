@@ -7,6 +7,40 @@ SecAds.IndexRoute = Ember.Route.extend({
   }
 });
 
+SecAds.EngineeringRoute = Ember.Route.extend({
+  model: function(params) {
+    return [
+      {
+        project: "test",
+        description: "blah",
+        organization: "LinkedIn"
+      }
+    ];
+  }
+});
+
+SecAds.WritingRoute = Ember.Route.extend({
+  model: function(params) {
+    return [
+      {
+        title: "LinkedIn",
+        description: "LinkedIn Publishing Platform - writing about my professional journey.", 
+        url: "https://www.linkedin.com/today/author/2996039"
+      },
+      {
+        title: "EnableHer",
+        description: "I wrote a series of posts for this e-zine a few years back.", 
+        url: "http://www.enableher.com/author/sclatterbuck"
+      },
+      {
+        title: "Musings of a Cycling-Crazed Techie",
+        description: "This is my personal blog where I sometimes write about technology, but mostly about adventures.", 
+        url: "http://girodichatterbox.blogspot.com/"
+      }
+    ];
+  }
+});
+
 SecAds.AdventuresRoute = Ember.Route.extend({
   model: function(params) {
     return [
@@ -199,7 +233,7 @@ SecAds.PressRoute = Ember.Route.extend({
       {
         name: "10 Most Powerful Women Shining In The Tech World!", 
         publication: "EFY Times News", 
-        reporter: "EFY Times News",
+        reporter: "Sanchari Banerjee",
         url: "http://efytimes.com/e1/fullnews.asp?edid=150753",
         image: "http://www.artechinfo.in/BanasthaliOnline/EFYTimes_files/efytimes_logo.gif"
       },
@@ -264,6 +298,7 @@ SecAds.Router.map(function() {
   this.resource('engineering');
   this.resource('design');
   this.resource('adventures');
+  this.resource('details', {path: 'details/:id'});
   /*this.resource('photos');
   this.resource('photo', { path: 'photos/:id' });
   this.resource('add');*/
