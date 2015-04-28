@@ -7,16 +7,23 @@ SecAds.IndexRoute = Ember.Route.extend({
   }
 });
 
+
+
 SecAds.EngineeringRoute = Ember.Route.extend({
   model: function(params) {
     return [
       {
-        project: "test",
-        description: "blah",
-        organization: "LinkedIn"
+        project: "iOS Onboarding Flow",
+        description: "As an apprentice on our mobile team, I enhanced the onboarding flow with additonal actions as well as adding accessibility throughout.",
+        organization: "LinkedIn", 
+        images: []
       }
     ];
   }
+});
+
+SecAds.DetailsRoute = SecAds.EngineeringRoute.extend({
+
 });
 
 SecAds.WritingRoute = Ember.Route.extend({
@@ -295,10 +302,12 @@ SecAds.Router.map(function() {
   this.resource('speaking');
   this.resource('writing');
   this.resource('press');
-  this.resource('engineering');
+  this.resource('engineering', function(){
+    this.resource('details', { path: 'details/:id' });
+  });
   this.resource('design');
   this.resource('adventures');
-  this.resource('details', {path: 'details/:id'});
+
   /*this.resource('photos');
   this.resource('photo', { path: 'photos/:id' });
   this.resource('add');*/
