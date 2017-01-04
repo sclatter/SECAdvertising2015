@@ -1,0 +1,81 @@
+### Event Managers
+
+  Components can define an object as their `eventManager` property. This object can
+  then implement methods that match the desired event names. Matching events
+  that occur on the components's rendered HTML or the rendered HTML of any of its DOM
+  descendants will trigger this method. A `jQuery.Event` object will be passed
+  as the first argument to the method and an  `Ember.Component` object as the
+  second. The `Ember.Component` will be the component whose rendered HTML was interacted
+  with. This may be the component with the `eventManager` property or one of its
+  descendant components.
+
+  ```app/components/my-widget.js
+  import Ember from 'ember';
+
+  export default Ember.Component.extend({
+    eventManager: Ember.Object.create({
+      doubleClick: function(event, component) {
+        // will be called when an instance's
+        // rendered element or any rendering
+        // of this components's descendant
+        // elements is clicked
+      }
+    })
+  });
+  ```
+
+  An event defined for an event manager takes precedence over events of the
+  same name handled through methods on the component.
+
+  ```app/components/my-widget.js
+  import Ember from 'ember';
+
+  export default Ember.Component.extend({
+    mouseEnter: function(event) {
+      // will never trigger.
+    },
+    eventManager: Ember.Object.create({
+      mouseEnter: function(event, component) {
+        // takes precedence over MyComponent#mouseEnter
+      }
+    })
+  });
+  ```
+
+  Similarly a components's event manager will take precedence for events of any components
+  rendered as a descendant. A method name that matches an event name will not
+  be called if the component instance was rendered inside the HTML representation of
+  a component that has an `eventManager` property defined that handles events of the
+  name. Events not handled by the event manager will still trigger method calls
+  on the descendant.
+
+  ```app/components/outer-component.js
+  import Ember from 'ember';
+
+  export default Ember.Component.extend({
+    template: Ember.HTMLBars.compile("outer {{#component 'inner'}}inner{{/component}} outer"),
+    eventManager: Ember.Object.create({
+      mouseEnter: function(event, component) {
+        // component might be instance of either
+        // OuterComponent or InnerComponent depending on
+        // where on the page the user interaction occurred
+      }
+    })
+  });
+  ```
+
+  ```app/components/inner-component.js
+  import Ember from 'ember';
+
+  export default Ember.Component.extend({
+    click: function(event) {
+      // will be called if rendered inside
+      // an OuterComponent because OuterComponent's
+      // eventManager doesn't handle click events
+    },
+    mouseEnter: function(event) {
+      // will never be called if rendered inside
+      // an OuterComponent.
+    }
+  });
+  ```
